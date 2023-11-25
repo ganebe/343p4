@@ -21,24 +21,24 @@ class Classic:Movie
 {
 
 public:
-	//Constructors
-	Classic();
-	Classic(int stock, string director, string title,  string majorNameAndReleaseDate);
+	Classic(int stock, string director, string title, string majorActorFirstName, string MajorActorLastName, int releaseDate);
 
-	//Destructor
-	~Classic();
 
 	//getters
-	string getMajorNameAndReleaseDate() const;
+	string getFirstName() const;
+	string getLastName() const;
+	int getReleaseDate() const;
 
 	//Overloads
-	bool operator<(const Classic& other) const;
+	bool operator<(const Classic& other) const;	
 	bool operator>(const Classic& other) const;
 	bool operator==(const Classic& other) const;
 	bool operator!=(const Classic& other) const;
 
 private:
-	string majorNameAndReleaseDate;
+	string majorActorFirstName_;
+	string majorActorLastName_;
+	int releaseDate_;
 
 };
 #endif

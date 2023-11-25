@@ -22,11 +22,8 @@ class Drama:Movie
 
 public:
 	//Constructors
-	Drama();
 	Drama(int stock, string director, string title, int releaseYear);
 
-	//Destructor
-	~Drama();
 	
 	//getters
 	int getReleaseYear() const;
@@ -38,6 +35,6 @@ public:
 	bool operator!=(const Drama& other) const;
 
 private:
-	int releaseYear;
+	int releaseYear_;
 };
 #endif

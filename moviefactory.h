@@ -28,7 +28,7 @@ MovieFactory(); // deafualt constructor
 // and the movie it returns shouldn't be used 
 //-------------------------------------------------------------------------
 
-static Movie* createMovie(string type, bool& sucess);
+static Movie createMovie(string type, bool& sucess);
 
 private:
 

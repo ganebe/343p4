@@ -1,38 +1,40 @@
-#include "comedy.h"
+#include "drama.h"
 
-Comedy::Comedy(int stock, string director, string title, int releaseYear):Movie(stock, director, title)
+Drama::Drama(int stock, string director, string title, int releaseYear):Movie(stock, director, title)
 {
     releaseYear_ = releaseYear;
 }
 
-int Comedy::getReleaseYear() const
+int Drama::getReleaseYear() const
 {
     return releaseYear_;
 }
 
-bool Comedy::operator<(const Comedy &other) const
+bool Drama::operator <(const Drama &other) const
 {
+
     if(*this == other){
         return false;
     }
 
-    if(getTitle() < other.getTitle()){
+    
+    if(getDirector() < other.getDirector()){
         return true;
     }
-    //when title are the same or weight the same(char)
-    if(releaseYear_ < other.releaseYear_){
+
+    if(getTitle() < other.getTitle()){
         return true;
     }
 
     return false;
 }
 
-bool Comedy::operator>(const Comedy &other) const
+bool Drama::operator >(const Drama &other) const
 {
     return !(*this < other);
 }
 
-bool Comedy::operator==(const Comedy &other) const
+bool Drama::operator==(const Drama &other) const
 {
     if(getTitle() != other.getTitle()){
         return false;
@@ -50,7 +52,7 @@ bool Comedy::operator==(const Comedy &other) const
     return true;
 }
 
-bool Comedy::operator!=(const Comedy &other) const
+bool Drama::operator!=(const Drama &other) const
 {
     return !(*this == other);
 }

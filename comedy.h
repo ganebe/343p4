@@ -25,8 +25,6 @@ public:
 	//Constructors
 	Comedy(int stock, string director, string title, int releaseYear);
 
-	//Destructor
-	~Comedy();
 
 	//getters
 	int getReleaseYear() const;
