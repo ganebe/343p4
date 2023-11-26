@@ -11,7 +11,8 @@ template<typename KeyType, typename ValueType>
 class Hash {
 public:
     // Constructor
-    Hash() {
+    Hash(){
+        
     }
 
     // The size of the hash table
@@ -40,12 +41,14 @@ public:
     }
 
 private:
-    // The hash table data
+    // The hash table data(using open hashing)
     vector<list<pair<KeyType, ValueType>>> data_;
 
     // Hash function
     int hashFunction(const KeyType& key) const {
-        
+        int keyvalue = key;
+        int returnValue = keyvalue % 7;
+        return returnValue;
     }
 };
 #endif
