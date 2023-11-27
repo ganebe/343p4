@@ -9,7 +9,6 @@
 #include "inventory.h"
 #include "customer.h"
 #include "action.h"
-#include "verify.h"
 using namespace std;
 
 class Store
@@ -41,6 +40,5 @@ private:
     Hash<int, Customer*> customers_;  // instance variable for Customer class
     Inventory inventory_; // instance variable for Inventory class
     Action action_;       // instance variable for Action class
-    Verify Verifier_;   //instance variable for verify class
 };
 #endif
