@@ -7,6 +7,15 @@ Customer::Customer(int customerId, const string &lastName, const string &firstNa
     firstName_ = firstName;
 }
 
+Customer::Customer(const Customer &rhs)
+{
+
+    customerId_ = rhs.customerId_;
+    lastName_ = rhs.lastName_;
+    firstName_ = rhs.firstName_;
+    history_ = rhs.history_;
+}
+
 int Customer::getCustomerId() const
 {
     return customerId_;

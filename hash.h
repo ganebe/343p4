@@ -7,22 +7,26 @@
 #include <utility>
 using namespace std;
 
+const int TABLESIZE = 7;
 template<typename KeyType, typename ValueType>
 class Hash {
 public:
     // Constructor
     Hash(){
-        
-    }
-
-    // The size of the hash table
-    size_t size() const {
-        
+        data_.resize(TABLESIZE);
     }
 
      // Adds an item with the given key and value to the hash table. Updates the value if the key already exists.
-    bool addItem(const KeyType& key, const ValueType& value) {
-        
+    bool addItem(const KeyType& key, ValueType& value) {
+        int index = hashFunction(key);
+       // Iterate through the list at 'index' to find the item
+        for (const auto& pair : data_[index]) {
+            if (pair.first == key) {
+                return false; // Copy found
+            }
+        }
+        data_[index].push_front({key, value});
+        return true;
     }
 
      // Applies a given function to each item in the hash table.
@@ -31,12 +35,29 @@ public:
     }
 
     // Retrieves the value associated with a given key.
-    const ValueType* getItem(const KeyType& key) const {
-        
+    bool getItem(const KeyType& key, ValueType& value){
+        int index = hashFunction(key);
+
+       // Iterate through the list at 'index' to find the item
+        for (const auto& pair : data_[index]) {
+            if (pair.first == key) {
+                value = pair.second;
+                return true; // Item found
+            }
+        }
+
+        return false;
     }
 
     // Removes the item with the specified key from the hash table.
     bool removeItem(const KeyType& key) {
+    }
+
+    void clear(){
+
+    }
+
+    void empty(){
         
     }
 
@@ -47,7 +68,7 @@ private:
     // Hash function
     int hashFunction(const KeyType& key) const {
         int keyvalue = key;
-        int returnValue = keyvalue % 7;
+        int returnValue = keyvalue % TABLESIZE;
         return returnValue;
     }
 };

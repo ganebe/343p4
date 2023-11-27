@@ -9,7 +9,8 @@ class Customer {
 public:
     // Constructor
     Customer(int customerId, const string& lastName, const string& firstName);
-
+    Customer(const Customer& rhs);
+    
     // Get the customer's ID
     int getCustomerId() const;
 
