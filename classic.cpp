@@ -1,6 +1,6 @@
 #include "classic.h"
 
-Classic::Classic(int stock, string director, string title, string majorActorFirstName, string MajorActorLastName, int releaseDate):Movie(stock, director, title)
+Classic::Classic(int stock, string director, string title, string majorActorFirstName, string MajorActorLastName, string releaseDate):Movie(stock, director, title)
 {
     majorActorFirstName_ = majorActorFirstName;
     majorActorLastName_ = MajorActorLastName;
@@ -17,7 +17,7 @@ string Classic::getLastName() const
     return majorActorLastName_;
 }
 
-int Classic::getReleaseDate() const
+string Classic::getReleaseDate() const
 {
     return releaseDate_;
 }

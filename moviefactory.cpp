@@ -56,13 +56,13 @@ Movie MovieFactory::createMovie(string input, bool &sucess)
         while(getline(lastToken,temp, ' ' )){
             rleaseDateAndActor.push_back(temp);
         }
-        if(stoi(rleaseDateAndActor[2]) < 0 ){
+        if(stoi(rleaseDateAndActor[2]) < 0 || stoi(rleaseDateAndActor[3]) < 0){
             cout << "Movie creation failed, a movie can't have a release year that lower than 0" << endl;
             sucess = false;
             return Movie(12, " ", " ");
         }
-
-        Classic returnMovie(stoi(tokens[1]), tokens[2], tokens[3], rleaseDateAndActor[0], rleaseDateAndActor[1], stoi(rleaseDateAndActor[2]));
+        string relaseDate = ( (rleaseDateAndActor[2].append(" ")).append(rleaseDateAndActor[3]) );
+        Classic returnMovie(stoi(tokens[1]), tokens[2], tokens[3], rleaseDateAndActor[0], rleaseDateAndActor[1], relaseDate);
         sucess = true;
         return returnMovie;
     }

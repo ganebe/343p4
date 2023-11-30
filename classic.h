@@ -21,13 +21,13 @@ class Classic:public Movie
 {
 
 public:
-	Classic(int stock, string director, string title, string majorActorFirstName, string MajorActorLastName, int releaseDate);
+	Classic(int stock, string director, string title, string majorActorFirstName, string MajorActorLastName, string releaseDate);
 
 
 	//getters
 	string getFirstName() const;
 	string getLastName() const;
-	int getReleaseDate() const;
+	string getReleaseDate() const;
 
 	//Overloads
 	bool operator<(const Classic& other) const;	
@@ -38,7 +38,7 @@ public:
 private:
 	string majorActorFirstName_;
 	string majorActorLastName_;
-	int releaseDate_;
+	string releaseDate_;
 
 };
 #endif
