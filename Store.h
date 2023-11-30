@@ -31,11 +31,6 @@ public:
     //-------------------------------------------------------------------------
     void runCommands(string); // reads and runs commands file
 
-    //------------------------- addCustomer ---------------------------------
-    // add new customer to the hash table
-    //-------------------------------------------------------------------------    
-    void addCustomer();
-
 private:
     Hash<int, Customer*> customers_;  // instance variable for Customer class
     Inventory inventory_; // instance variable for Inventory class

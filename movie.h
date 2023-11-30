@@ -11,6 +11,8 @@ public:
     // Constructor	
     Movie(int stock, const string& director, const string& title);
 
+    Movie(const Movie& rhs);
+
     // Virtual destructor
     virtual ~Movie() = default;
 
@@ -37,6 +39,7 @@ public:
     virtual bool operator!=(const Movie& other) const;
 	virtual bool operator<(const Movie& other) const;
 	virtual bool operator>(const Movie& other) const;
+
 private:
     int current_stock_; // Number of stock available.
     int stock_; // Number of stock.
