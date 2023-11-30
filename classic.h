@@ -17,7 +17,7 @@
 
 using namespace std;
 
-class Classic:Movie
+class Classic:public Movie
 {
 
 public:

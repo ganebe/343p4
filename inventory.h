@@ -43,7 +43,7 @@ void printItmes();
 //------------------------- addMovie ---------------------------------
 // Adds a movie to the inventory
 //-------------------------------------------------------------------------
-void addMovie(Movie&); 
+bool addMovie(Movie&); 
 
 private:
 vector<Movie> comedy_movies_; // vector to stroe comedy movies

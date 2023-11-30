@@ -1,8 +1,13 @@
 #ifndef MOVIEFACTORY_H
 #define MOVIEFACTORY_H
 #include <string>
+#include <iostream>
 #include "movie.h"
+#include "comedy.h"
+#include "drama.h"
+#include "classic.h"
 #include "inventory.h"
+using namespace std;
 
 class MovieFactory{
 
@@ -28,7 +33,7 @@ MovieFactory(); // deafualt constructor
 // and the movie it returns shouldn't be used 
 //-------------------------------------------------------------------------
 
-static Movie MovieFactory::createMovie(string type, bool &sucess);
+static Movie MovieFactory::createMovie(string input, bool &sucess);
 
 private:
 
