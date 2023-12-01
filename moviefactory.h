@@ -33,7 +33,7 @@ MovieFactory(); // deafualt constructor
 // and the movie it returns shouldn't be used 
 //-------------------------------------------------------------------------
 
-static Movie MovieFactory::createMovie(string input, bool &sucess);
+static Movie MovieFactory::createMovie(string input, bool &sucess, char& movieType);
 
 private:
 

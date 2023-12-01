@@ -15,26 +15,20 @@ void Store::loadMovies(string fileName)
 
 
     bool sucess;
-
+    char movieType = ' ';
     while(!in_file.eof()){
+        movieType = ' ';
         sucess = false;
         string temp = "";
         in_file >> temp;
         if(temp == ""){
             cout << "Empty file or empty string, please check file"<< endl;
         }else{
-            Movie newMovie = MovieFactory::createMovie(temp,sucess);
+            Movie newMovie = MovieFactory::createMovie(temp, sucess, movieType);
             if(sucess == false){
                 cout << "invaid data, movies couldn't be created" << endl;
             }else{
-                sucess = inventory_.addMovie(newMovie);
-                if(sucess == false){
-                    cout << "movie couldn't add to inventory, duplicated movie already exist" << endl;
-                }
-            }
-            sucess = inventory_.addMovie(newMovie);
-            if(sucess == false){
-                cout << "duplicated movie already eixst in the inventory" << endl;
+                sucess = inventory_.addMovie(newMovie, movieType);           
             }
             
         }
