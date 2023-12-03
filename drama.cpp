@@ -56,3 +56,8 @@ bool Drama::operator!=(const Drama &other) const
 {
     return !(*this == other);
 }
+
+void Drama::print() const
+{
+    cout << "D, " << getStock() << ", " << getDirector() << ", " << getTitle() << ", " << releaseYear_ << endl;
+}

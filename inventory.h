@@ -2,6 +2,7 @@
 #define INVENTORY_H
 #include <vector>
 #include <string>
+#include <iostream>
 #include "movie.h"
 using namespace std;
 
@@ -50,7 +51,6 @@ vector<Movie> comedy_movies_; // vector to stroe comedy movies
 vector<Movie> drama_movies_; // vector to store drama movies
 vector<Movie> classics_movies_; // vector to store classcis movies
 
-/// @brief 
 void movieSort(vector<Movie>&);
 };
 

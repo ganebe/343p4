@@ -34,6 +34,8 @@ void Store::loadMovies(string fileName)
         }
     }
 
+    in_file.close();
+
 }
 
 void Store::loadCustomers(string fileName)
@@ -65,4 +67,54 @@ void Store::loadCustomers(string fileName)
             }
         }
     }
+    in_file.close();
+}
+
+void Store::runCommands(string fileName)
+{
+    ifstream in_file;
+    in_file.open(fileName);
+    if(in_file.is_open() == false){
+        cout << "can't open file, please check the file name"<< endl;
+        return;
+    }
+
+    while(!in_file.eof()){
+        string actionType = " ";
+        in_file >> actionType;
+        if(actionType == "B" || actionType == "R" || actionType == "H" || actionType == "I"){
+
+            if(actionType == "I"){
+                inventory_.printItmes();
+            }
+
+            if(actionType == "H"){
+                int customerId = 0;
+                Customer * returnCustomer = new Customer(12, "s", "d");
+                bool foundCustomer = false;
+                in_file >> customerId;
+                foundCustomer = customers_.getItem(customerId, returnCustomer);
+                if(foundCustomer == false){
+                    cout << "can't print customer history, customer Id doesn't exist" << endl;
+                }else{
+                    returnCustomer->displayHistory();
+                }
+            }
+
+            if(actionType == "B"){
+                
+            }
+
+            if(actionType == "R"){
+                
+            }
+
+
+        }else{
+            cout << "Invaild commands, please check data";
+        }   
+    }
+
+    in_file.close();
+
 }

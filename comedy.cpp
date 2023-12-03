@@ -54,3 +54,8 @@ bool Comedy::operator!=(const Comedy &other) const
 {
     return !(*this == other);
 }
+
+void Comedy::print() const
+{
+    cout << "F, " << getStock() << ", " << getDirector() << ", " << getTitle() << ", " << releaseYear_ << endl;
+}

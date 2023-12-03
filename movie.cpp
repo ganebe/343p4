@@ -8,6 +8,7 @@ Movie::Movie(int stock, const string &director, const string &title)
     title_ = title;
 }
 
+
 int Movie::getStock() const
 {
     return stock_;
@@ -54,4 +55,28 @@ bool Movie::returnMovie()
     current_stock_++;
     return true;
     
+}
+
+void Movie::print() const
+{
+}
+
+bool Movie::operator==(const Movie &other) const
+{
+    return false;
+}
+
+bool Movie::operator!=(const Movie &other) const
+{
+    return false;
+}
+
+bool Movie::operator<(const Movie &other) const
+{
+    return false;
+}
+
+bool Movie::operator>(const Movie &other) const
+{
+    return false;
 }

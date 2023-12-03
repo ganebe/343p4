@@ -33,7 +33,7 @@ public:
 	bool operator>(const Drama& other) const;
 	bool operator==(const Drama& other) const;
 	bool operator!=(const Drama& other) const;
-
+	virtual void print() const;
 private:
 	int releaseYear_;
 };

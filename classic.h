@@ -34,7 +34,7 @@ public:
 	bool operator>(const Classic& other) const;
 	bool operator==(const Classic& other) const;
 	bool operator!=(const Classic& other) const;
-
+	virtual void print() const;
 private:
 	string majorActorFirstName_;
 	string majorActorLastName_;

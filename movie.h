@@ -2,6 +2,7 @@
 #define MOVIE_H_
 #include <string>
 #include <sstream>
+#include <iostream>
 
 using namespace std;
 
@@ -11,7 +12,6 @@ public:
     // Constructor	
     Movie(int stock, const string& director, const string& title);
 
-    Movie(const Movie& rhs);
 
     // Virtual destructor
     virtual ~Movie() = default;
@@ -34,12 +34,13 @@ public:
     bool borrowMovie();
     bool returnMovie();
 
+    virtual void print() const;
+
     // Comparison operators
     virtual bool operator==(const Movie& other) const;
     virtual bool operator!=(const Movie& other) const;
 	virtual bool operator<(const Movie& other) const;
 	virtual bool operator>(const Movie& other) const;
-
 private:
     int current_stock_; // Number of stock available.
     int stock_; // Number of stock.

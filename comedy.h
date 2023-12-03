@@ -34,6 +34,7 @@ public:
 	bool operator>(const Comedy& other) const;
 	bool operator==(const Comedy& other) const;
 	bool operator!=(const Comedy& other) const;
+	virtual void print() const;
 
 private:
 	int releaseYear_;

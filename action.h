@@ -23,39 +23,22 @@ class Action{
 
 public:
 Action(); //Default construction for the action, however there is no variables to initialize, so it basically doesn't do anything
-~Action();
+
 
 //------------------------- Borrow ---------------------------------
 //Return true when the movie requested has stock in the inventory
 // and the customer exist. Otherwise return false.
 //-------------------------------------------------------------------------
-bool Borrow(Movie&, int customer_id);
+bool B(Movie&, int customer_id);
 
 
 //------------------------- Borrow ---------------------------------
 //Return true when the movie returned got borrow before and
 // the customer exist and borrow the movie before. Otherwise return false
 //-------------------------------------------------------------------------
-bool Return(Movie&, int customer_id);
+bool R(Movie&, int customer_id);
 
 
-//------------------------- Inventory ---------------------------------
-//  outputs the inventory of all the items in the store
-//-------------------------------------------------------------------------
-void Inventory();
-
-
-//------------------------- History ---------------------------------
-//  outputs all the transactions of a customer if the customer does exist
-//-------------------------------------------------------------------------
-void History(int customer_id);
-
-
-//------------------------- addNewMovie ---------------------------------
-// create and add the new movie to the inventory
-// return true if movie was sucessfully added, otherwise return false
-//-------------------------------------------------------------------------
-bool addNewMovie(string type);
 
 private:
 

@@ -78,3 +78,8 @@ bool Classic::operator!=(const Classic &other) const
 {
     return !(*this == other);
 }
+
+void Classic::print() const
+{
+    cout << "C, " << getStock() << ", " << getDirector() << ", " << getTitle() << ", " << majorActorFirstName_ << majorActorLastName_ << releaseDate_ << endl;
+}
