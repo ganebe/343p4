@@ -41,15 +41,15 @@ Movie MovieFactory::createMovie(string input, bool &sucess, char& movieType)
             return Movie(12, " ", " ");
         }else{
             if(tokens[0] == "F"){
-                Comedy returnMovie(stoi(tokens[1]), tokens[2], tokens[3], stoi(tokens[4]));
+                Comedy * returnMovie = new Comedy(stoi(tokens[1]), tokens[2], tokens[3], stoi(tokens[4]));
                 sucess = true;
                 movieType = 'F';
-                return returnMovie;
+                return *returnMovie;
             }
-            Drama returnMovie(stoi(tokens[1]), tokens[2], tokens[3], stoi(tokens[4]));
+            Drama * returnMovie = new Drama(stoi(tokens[1]), tokens[2], tokens[3], stoi(tokens[4]));
             sucess = true;
             movieType = 'D';
-            return returnMovie;
+            return *returnMovie;
         }
     }else{
         vector<string> rleaseDateAndActor;
@@ -64,10 +64,11 @@ Movie MovieFactory::createMovie(string input, bool &sucess, char& movieType)
             return Movie(12, " ", " ");
         }
         string relaseDate = ( (rleaseDateAndActor[2].append(" ")).append(rleaseDateAndActor[3]) );
-        Classic returnMovie(stoi(tokens[1]), tokens[2], tokens[3], rleaseDateAndActor[0], rleaseDateAndActor[1], relaseDate);
+        Classic *  returnMovie = new Classic(stoi(tokens[1]), tokens[2], tokens[3], rleaseDateAndActor[0], rleaseDateAndActor[1], relaseDate);
         movieType = 'C';
         sucess = true;
-        return returnMovie;
+        
+        return *returnMovie;
     }
 
 

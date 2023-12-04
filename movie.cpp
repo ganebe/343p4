@@ -61,6 +61,11 @@ void Movie::print() const
 {
 }
 
+string Movie::getReleaseDate() const
+{
+    return string();
+}
+
 bool Movie::operator==(const Movie &other) const
 {
     return false;

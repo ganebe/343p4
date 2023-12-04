@@ -4,6 +4,7 @@
 #include <string>
 #include <iostream>
 #include "movie.h"
+#include "classic.h"
 using namespace std;
 
 // ------------------------------------------------Inventory.h -------------------------------------------------------
@@ -27,12 +28,12 @@ Inventory(); // deafault constructor
 //------------------------- setReturn ---------------------------------
 // borrow a movie from the inventory
 //-------------------------------------------------------------------------
-bool setBorrow(Movie&);
+bool setBorrow(Movie&, char movieType);
 
 //------------------------- setReturn ---------------------------------
 // return a movie to the inventory
 //-------------------------------------------------------------------------
-bool setReturn(Movie&);
+bool setReturn(Movie&, char movieType);
 
 
 //------------------------- addMovie ---------------------------------

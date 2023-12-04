@@ -51,13 +51,6 @@ bool Classic::operator>(const Classic &other) const
 
 bool Classic::operator==(const Classic &other) const
 {
-    if(getDirector() != other.getDirector()){
-        return false;
-    }
-
-    if(getTitle() != other.getTitle()){
-        return false;
-    }
 
     if(releaseDate_ != other.releaseDate_){
         return false;

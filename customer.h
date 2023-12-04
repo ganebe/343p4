@@ -21,7 +21,7 @@ public:
     string getFirstName() const;
 
     // Adds a transaction to the customer's history.
-    void addHistory(string data);
+    void addHistory(string data, bool is_return);
 
     // Displays the customer's transaction history.
     void displayHistory() const;
@@ -31,5 +31,6 @@ private:
     string lastName_; // Last name of the customer.
     string firstName_; // First name of the customer.
     vector<string> history_; // customer's transactions history
+    vector<string> status_;
 };
 #endif

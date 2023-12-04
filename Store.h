@@ -8,7 +8,7 @@
 #include "hash.h"
 #include "inventory.h"
 #include "customer.h"
-#include "action.h"
+#include "moviefactory.h"
 using namespace std;
 
 class Store
@@ -34,6 +34,8 @@ public:
 private:
     Hash<int, Customer*> customers_;  // instance variable for Customer class
     Inventory inventory_; // instance variable for Inventory class
-    Action action_;       // instance variable for Action class
+
+    void borrow(ifstream&);
+    void returnMovie(ifstream&);
 };
 #endif

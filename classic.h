@@ -27,7 +27,7 @@ public:
 	//getters
 	string getFirstName() const;
 	string getLastName() const;
-	string getReleaseDate() const;
+	virtual string getReleaseDate() const;
 
 	//Overloads
 	bool operator<(const Classic& other) const;	

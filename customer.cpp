@@ -31,9 +31,12 @@ string Customer::getFirstName() const
     return firstName_;
 }
 
-void Customer::addHistory(string data)
+void Customer::addHistory(string data, bool is_return)
 {
-    history_.push_back(data);
+    if(is_return == false){
+        history_.push_back(data);
+        status_.push_back("borrowed");
+    }
 
 
 }
@@ -41,6 +44,6 @@ void Customer::addHistory(string data)
 void Customer::displayHistory() const
 {
     for(int i = 0; i < history_.size(); i++){
-        cout << history_[i] << endl;
+        cout << history_[i] << status_[i] << endl;
     }
 }

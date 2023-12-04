@@ -102,11 +102,20 @@ void Store::runCommands(string fileName)
             }
 
             if(actionType == "B"){
-                
+                borrow(in_file);
             }
 
             if(actionType == "R"){
-                
+                returnMovie(in_file);
+                int customerId = 0;
+                Customer * returnCustomer = new Customer(12, "s", "d");
+                bool foundCustomer = false;
+                in_file >> customerId;
+                foundCustomer = customers_.getItem(customerId, returnCustomer);
+                if(foundCustomer == false){
+                    cout << "Invaild customer Id, return failed" << endl;
+                }
+                delete returnCustomer;                
             }
 
 
@@ -116,5 +125,86 @@ void Store::runCommands(string fileName)
     }
 
     in_file.close();
+
+}
+
+void Store::borrow(ifstream& in_file)
+{
+    int customerId = 0;
+    Customer * returnCustomer = new Customer(12, "s", "d");
+    bool foundCustomer = false;
+    in_file >> customerId;
+    foundCustomer = customers_.getItem(customerId, returnCustomer);
+    if(foundCustomer == false){
+        cout << "Invaild customer Id, borrow failed" << endl;
+    }else{
+        string mediaType;
+        in_file >> mediaType;
+        if(mediaType != "D"){
+            cout << "Invaild media type, borrow failed" << endl;
+        }else{
+            char movieType;
+            in_file >> movieType;
+            if(movieType == 'D' || movieType == 'C' || movieType == 'F'){
+                char rest[100];
+                in_file.getline(rest, sizeof(rest));
+                string borrowMoiveInfo;
+                bool returnBool;
+                char returnChar;
+                if(movieType == 'C'){
+                    borrowMoiveInfo = "C, 1, temp, temp,";
+                    stringstream ss(rest);
+                    int month, year;
+                    ss >> month >> year;
+                    char majorActor[100];
+                    ss.getline(majorActor, sizeof(majorActor));
+                    borrowMoiveInfo += majorActor; // need to swap the order(date first then name)
+                    borrowMoiveInfo += " ";
+                    borrowMoiveInfo += month;
+                    borrowMoiveInfo += " ";
+                    borrowMoiveInfo += year;
+                }
+                            
+                if(movieType == 'F'){
+                    borrowMoiveInfo = "F, 1, temp,";
+                    borrowMoiveInfo = borrowMoiveInfo + rest;
+                }
+
+                if(movieType == 'D'){
+                    borrowMoiveInfo = "D, 1,";
+                    borrowMoiveInfo = borrowMoiveInfo + rest;
+                    borrowMoiveInfo = borrowMoiveInfo + " 1234";
+                }
+                           
+                Movie tempMoive = MovieFactory::createMovie(borrowMoiveInfo, returnBool, returnChar);
+                returnBool = false;
+                returnBool = inventory_.setBorrow(tempMoive, 'C');
+                if(returnBool == false){
+                    cout << "couldn't borrow movie, movie may no exist or out of stock" << endl;
+
+                }else{
+                    string bookDeatils = rest;
+                    bookDeatils = bookDeatils.substr(1,99);
+                    returnCustomer->addHistory(bookDeatils, false);
+                }
+                        
+            }else{
+                cout << "Invaild Movie Type, borrow failed" << endl;
+            }
+        }
+    }
+                   
+}
+
+void Store::returnMovie(ifstream & in_file)
+{
+    int customerId = 0;
+    Customer * returnCustomer = new Customer(12, "s", "d");
+    bool foundCustomer = false;
+    in_file >> customerId;
+    foundCustomer = customers_.getItem(customerId, returnCustomer);
+    if(foundCustomer == false){
+        cout << "Invaild customer Id, return failed" << endl;
+    }
 
 }

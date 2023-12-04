@@ -40,10 +40,6 @@ bool Drama::operator==(const Drama &other) const
         return false;
     }
 
-    if(releaseYear_ != other.releaseYear_){
-        return false;
-    }
-
     if(getDirector() != other.getDirector()){
         return false;
     }

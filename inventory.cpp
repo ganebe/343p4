@@ -18,6 +18,130 @@ void Inventory::printItmes()
 
 }
 
+bool Inventory::setBorrow(Movie &newMovie, char movieType)
+{
+    vector<Movie>* movies = nullptr;
+    if (movieType == 'F')
+    {
+        movies = &comedy_movies_;
+    }
+    else if(movieType == 'D')
+    {
+        movies = &drama_movies_;
+    }
+    else if (movieType == 'C')
+    {
+        int index = -1;
+        for(int i = 0; i < classics_movies_.size(); i++ ){
+            if(classics_movies_[i] == newMovie){
+                index = i;
+            }
+        }
+        if(index != -1){
+            if(classics_movies_[index].borrowMovie() == true){
+                return true;
+            }
+
+            vector<int> sameMovies;
+            for(int i = 0; i < classics_movies_.size(); i++){
+                if(classics_movies_[i].getTitle() == classics_movies_[index].getTitle()
+                && classics_movies_[i].getDirector() == classics_movies_[index].getDirector()
+                && classics_movies_[i].getReleaseDate() == classics_movies_[index].getReleaseDate()){
+                    sameMovies.push_back(i);
+                }
+            }
+
+            for(int i = 0; i < sameMovies.size(); i++){
+                if(classics_movies_[sameMovies[i]].borrowMovie() == true){
+                    return true;
+                }
+            }
+            return false;
+        }
+
+    }
+    else
+    {
+        return false;
+    }
+
+    if(movieType == 'D' || movieType == 'F'){
+        for (Movie& other : *movies) 
+        {
+            if (other == newMovie && other.getCurrentStock() > 0) 
+            {
+                return other.borrowMovie();
+            }
+        }
+    }
+    
+    return false;
+}
+
+
+
+bool Inventory::setReturn(Movie &newMovie, char movieType)
+{
+   vector<Movie>* movies = nullptr;
+    if (movieType == 'F')
+    {
+        movies = &comedy_movies_;
+    }
+    else if(movieType == 'D')
+    {
+        movies = &drama_movies_;
+    }
+    else if (movieType == 'C')
+    {
+        int index = -1;
+        for(int i = 0; i < classics_movies_.size(); i++ ){
+            if(classics_movies_[i] == newMovie){
+                index = i;
+            }
+        }
+        if(index != -1){
+            if(classics_movies_[index].returnMovie() == true){
+                return true;
+            }
+
+            vector<int> sameMovies;
+            for(int i = 0; i < classics_movies_.size(); i++){
+                if(classics_movies_[i].getTitle() == classics_movies_[index].getTitle()
+                && classics_movies_[i].getDirector() == classics_movies_[index].getDirector()
+                && classics_movies_[i].getReleaseDate() == classics_movies_[index].getReleaseDate()){
+                    sameMovies.push_back(i);
+                }
+            }
+
+            for(int i = 0; i < sameMovies.size(); i++){
+                if(classics_movies_[sameMovies[i]].returnMovie() == true){
+                    return true;
+                }
+            }
+            return false;
+
+
+        }else{
+            return false;
+        }
+    }
+    else
+    {
+        return false;
+    }
+
+    for (Movie& other : *movies) 
+    {
+        if(other == newMovie)
+        {
+            return other.returnMovie();
+        }
+    }
+
+    
+    return false;
+}
+
 bool Inventory::addMovie(Movie &newMovie, char movieType)
 {
     if(movieType == 'C'){
@@ -47,9 +171,9 @@ bool Inventory::addMovie(Movie &newMovie, char movieType)
         drama_movies_.push_back(newMovie);
         movieSort(drama_movies_);
         return true;
-    }else{
-        return false;
     }
+
+    return false;
 }
 
 void Inventory::movieSort(vector<Movie> & sort_arr) 

@@ -35,7 +35,7 @@ public:
     bool returnMovie();
 
     virtual void print() const;
-
+    virtual string getReleaseDate() const;
     // Comparison operators
     virtual bool operator==(const Movie& other) const;
     virtual bool operator!=(const Movie& other) const;

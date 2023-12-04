@@ -42,10 +42,6 @@ bool Comedy::operator==(const Comedy &other) const
         return false;
     }
 
-    if(getDirector() != other.getDirector()){
-        return false;
-    }
-
     //stock and current stock doesn't matter
     return true;
 }
