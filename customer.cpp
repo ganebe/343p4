@@ -47,3 +47,13 @@ void Customer::displayHistory() const
         cout << history_[i] << status_[i] << endl;
     }
 }
+
+bool Customer::containsHistory(string history) const
+{
+    for(int i = 0; i < history_.size(); i++){
+        if(history_[i] == history){
+            return true;
+        }
+    }
+    return false;
+}

@@ -1,18 +1,12 @@
 #include "string"
 #include <iostream>
 #include <fstream>
+#include "store.h"
 using namespace std;
 
 int main(){
-    ifstream in_file;
-    bool test = false;
-    in_file.open("test.txt");
-
-    string first,second;
-    in_file >> first >> second;
-    cout << first << second << endl;
-    char rest[100];
-    in_file.getline(rest, sizeof(rest));
-    cout << rest << endl;
-
+    Store ms;
+    ms.loadMovies("data4movies.txt");
+    ms.loadCustomers("data4customers.txt");
+    ms.runCommands("data4commands.txt");
 }

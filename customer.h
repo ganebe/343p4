@@ -25,6 +25,7 @@ public:
 
     // Displays the customer's transaction history.
     void displayHistory() const;
+    bool containsHistory(string history) const;
 
 private:
     int customerId_; // Unique identifier for the customer.
