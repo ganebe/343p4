@@ -41,7 +41,7 @@ public:
        // Iterate through the list at 'index' to find the item
         for (const auto& pair : data_[index]) {
             if (pair.first == key) {
-                *value = pair.second;
+                value = pair.second;
                 return true; // Item found
             }
         }

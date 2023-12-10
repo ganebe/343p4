@@ -34,6 +34,7 @@ public:
 	bool operator==(const Drama& other) const;
 	bool operator!=(const Drama& other) const;
 	virtual void print() const;
+	virtual string  sortingCriteria();
 private:
 	int releaseYear_;
 };

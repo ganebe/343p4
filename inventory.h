@@ -5,6 +5,8 @@
 #include <iostream>
 #include "movie.h"
 #include "classic.h"
+#include  "comedy.h"
+#include "drama.h"
 using namespace std;
 
 // ------------------------------------------------Inventory.h -------------------------------------------------------
@@ -28,12 +30,12 @@ Inventory(); // deafault constructor
 //------------------------- setReturn ---------------------------------
 // borrow a movie from the inventory
 //-------------------------------------------------------------------------
-bool setBorrow(Movie&, char movieType);
+bool setBorrow(Movie* &, char movieType, Movie*&);
 
 //------------------------- setReturn ---------------------------------
 // return a movie to the inventory
 //-------------------------------------------------------------------------
-bool setReturn(Movie&, char movieType);
+bool setReturn(Movie* &, char movieType);
 
 
 //------------------------- addMovie ---------------------------------
@@ -45,15 +47,18 @@ void printItmes();
 //------------------------- addMovie ---------------------------------
 // Adds a movie to the inventory
 //-------------------------------------------------------------------------
-bool addMovie(Movie&, char movieType); 
+bool addMovie(Movie*&, char movieType); 
 
 private:
-vector<Movie> comedy_movies_; // vector to stroe comedy movies
-vector<Movie> drama_movies_; // vector to store drama movies
-vector<Movie> classics_movies_; // vector to store classcis movies
+vector<Movie*> comedy_movies_; // vector to stroe comedy movies
+vector<Movie*> drama_movies_; // vector to store drama movies
+vector<Movie*> classics_movies_; // vector to store classcis movies
 
-void movieSort(vector<Movie>&);
+void dramaSort();
+void classcisSort();
+void comedySort();
 };
+
 
 
 #endif

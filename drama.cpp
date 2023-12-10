@@ -55,5 +55,11 @@ bool Drama::operator!=(const Drama &other) const
 
 void Drama::print() const
 {
-    cout << "D, " << getStock() << ", " << getDirector() << ", " << getTitle() << ", " << releaseYear_ << endl;
+    cout << "D, " << getCurrentStock() << ", " << getDirector() << ", " << getTitle() << ", " << releaseYear_ << endl;
+}
+
+string Drama::sortingCriteria()
+{
+    string returnString = getDirector() + ", " + getTitle() + ",";
+    return returnString; 
 }

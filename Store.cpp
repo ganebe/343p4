@@ -1,4 +1,4 @@
-#include "Store.h"
+#include "store.h"
 
 Store::Store()
 {
@@ -20,17 +20,22 @@ void Store::loadMovies(string fileName)
     while(!in_file.eof()){
         movieType = ' ';
         sucess = false;
-        string temp = "";
-        in_file >> temp;
-        if(temp == ""){
+        char temp[1000];
+        in_file.getline(temp, sizeof(temp));
+        string movieInfo = temp;
+        if(movieInfo.empty()){
             cout << "Empty file or empty string, please check file"<< endl;
         }else{
-            Movie newMovie = MovieFactory::createMovie(temp, sucess, movieType);
+            Movie * newMovie =  MovieFactory::createMovie(temp, sucess, movieType);
             if(sucess == false){
                 cout << "invaid data, movies couldn't be created" << endl;
             }else{
-                sucess = inventory_.addMovie(newMovie, movieType);           
+                sucess = inventory_.addMovie(newMovie, movieType);
+                if(sucess == false){
+                cout << "Movie already existed, failed to add to the inventory";
+                }           
             }
+
             
         }
     }
@@ -51,8 +56,21 @@ void Store::loadCustomers(string fileName)
     while(!in_file.eof()){
         string firstName = "";
         string lastName = "";
-        int customerId = 0;
-        in_file >> customerId >> firstName >> lastName;
+        int customerId = -1;
+        char temp[1000];
+        string nextLine = "";
+        in_file.getline(temp, sizeof(temp));
+        nextLine = temp;
+        if(nextLine.empty()){
+            cout << "Empty file or empty string, please check file"<< endl;
+        }else{
+            
+        
+        stringstream ss(nextLine);
+        ss >> customerId >> firstName >> lastName;
+        if(customerId == -1){
+            return;
+        }
         if(customerId > 9999 || customerId < 1000 ){
             cout << "Invaild customer Id, please try again" << endl;
         }else if(firstName == ""){
@@ -66,6 +84,8 @@ void Store::loadCustomers(string fileName)
             if(added == false){
                 cout << "customer id already used, please use a different one"<< endl;
             }
+        }
+
         }
     }
     in_file.close();
@@ -82,7 +102,17 @@ void Store::runCommands(string fileName)
 
     while(!in_file.eof()){
         string actionType = " ";
-        in_file >> actionType;
+        string nextLine = " ";
+        char temp[1000];
+        in_file.getline(temp, sizeof(temp));
+        nextLine = temp;
+        if(nextLine.empty()){
+            cout << "Empty file or empty string, please check file"<< endl;
+        }else{
+
+        
+        stringstream ss(nextLine);
+        ss >> actionType;
         if(actionType == "B" || actionType == "R" || actionType == "H" || actionType == "I"){
 
             if(actionType == "I"){
@@ -93,7 +123,7 @@ void Store::runCommands(string fileName)
                 int customerId = 0;
                 Customer * returnCustomer;
                 bool foundCustomer = false;
-                in_file >> customerId;
+                ss >> customerId;
                 foundCustomer = customers_.getItem(customerId, returnCustomer);
                 if(foundCustomer == false){
                     cout << "can't print customer history, customer Id doesn't exist" << endl;
@@ -103,56 +133,59 @@ void Store::runCommands(string fileName)
             }
 
             if(actionType == "B"){
-                borrow(in_file);
+                borrow(ss);
             }
 
             if(actionType == "R"){   
-                returnMovie(in_file);
+                returnMovie(ss);
             }
 
 
         }else{
-            cout << "Invaild commands, please check data";
+            cout << "Invaild commands, please check data" << endl;
         }   
+        }
+
     }
 
     in_file.close();
 
 }
 
-void Store::borrow(ifstream& in_file)
+void Store::borrow(stringstream& in_file)
 {
     int customerId = 0;
-    Customer * returnCustomer;
+    Customer * returnCustomer;  
     bool foundCustomer = false;
-    in_file >> customerId;
+    in_file >> customerId;  
     foundCustomer = customers_.getItem(customerId, returnCustomer);
     if(foundCustomer == false){
         cout << "Invaild customer Id, borrow failed" << endl;
         return;
     }
-        string mediaType;
+        string mediaType = " ";
         in_file >> mediaType;
         if(mediaType != "D"){
             cout << "Invaild media type, borrow failed" << endl;
             return;
         }
-            string movieType;
+            string movieType = " ";
             in_file >> movieType;
             if(movieType == "D" || movieType == "C" || movieType == "F"){
                 char rest[100];
                 in_file.getline(rest, sizeof(rest));
-                string borrowMoiveInfo;
+                string borrowMoiveInfo = " ";
                 bool returnBool;
                 char returnChar;
                 if(movieType == "C"){
-                    borrowMoiveInfo = "C, 1, temp, temp,";
+                    borrowMoiveInfo = "C, 1, temp, temp, ";
                     stringstream ss(rest);
-                    int month, year;
+                    string firstname, lastname, month, year;
                     ss >> month >> year;
-                    char majorActor[100];
-                    ss.getline(majorActor, sizeof(majorActor));
-                    borrowMoiveInfo += majorActor; // need to swap the order(date first then name)
+                    ss >> firstname >> lastname;
+                    borrowMoiveInfo += firstname;
+                    borrowMoiveInfo += " ";
+                    borrowMoiveInfo += lastname;
                     borrowMoiveInfo += " ";
                     borrowMoiveInfo += month;
                     borrowMoiveInfo += " ";
@@ -170,15 +203,35 @@ void Store::borrow(ifstream& in_file)
                     borrowMoiveInfo = borrowMoiveInfo + " 1234";
                 }
                 char movieChar = movieType[0];                           
-                Movie tempMoive = MovieFactory::createMovie(borrowMoiveInfo, returnBool, returnChar);
-                returnBool = false;
-                returnBool = inventory_.setBorrow(tempMoive, movieChar);
+                Movie * tempMoive = MovieFactory::createMovie(borrowMoiveInfo, returnBool, returnChar);
                 if(returnBool == false){
-                    cout << "couldn't borrow movie, movie may no exist or out of stock" << endl;
-
+                    cout << "couldn't borrow movie, movie info not vaild not" << endl;
                 }else{
-                    string bookDeatils = movieType += rest;
-                    returnCustomer->addHistory(bookDeatils, false);
+                    returnBool = false;
+                    Movie * rentedMovied;
+                    returnBool = inventory_.setBorrow(tempMoive, movieChar, rentedMovied);
+                    if(returnBool == false){
+                        cout << "couldn't borrow movie, movie may no exist or out of stock" << endl;
+
+                    }else{
+
+                        if(movieType == "F"){
+                            if (Comedy* derivedMovie = dynamic_cast<Comedy*>(tempMoive)){
+                                returnCustomer->addHistory(derivedMovie->sortingCriteria(), false, "F");
+                            }
+                        }
+                        if(movieType == "C"){
+                            if (Classic* derivedMovie = dynamic_cast<Classic*>(rentedMovied)){
+                                returnCustomer->addHistory(derivedMovie->sortingCriteria(), false, "C");
+                            }
+                        }
+                        if(movieType == "D"){
+                            if( Drama* derivedMovie = dynamic_cast<Drama*>(tempMoive)){
+                                returnCustomer->addHistory(derivedMovie->sortingCriteria(), false, "D");
+                            }
+
+                        }
+                    }
                 }
                         
             }else{
@@ -186,7 +239,7 @@ void Store::borrow(ifstream& in_file)
             }
 }
 
-void Store::returnMovie(ifstream & in_file)
+void Store::returnMovie(stringstream & in_file)
 {
     int customerId = 0;
     Customer * returnCustomer;
@@ -198,7 +251,7 @@ void Store::returnMovie(ifstream & in_file)
         return;
     }
 
-    string mediaType;
+    string mediaType = " ";
     in_file >> mediaType;
     if(mediaType != "D"){
         cout << "Invaild media type, return failed" << endl;
@@ -208,12 +261,13 @@ void Store::returnMovie(ifstream & in_file)
     in_file.getline(rest, sizeof(rest));
     string bookDetail = rest; // start with movie type w/o space infront
     bookDetail = bookDetail.substr(1,99);
-    
-    if(returnCustomer->containsHistory(bookDetail) == false){
-        cout << "Customer never borrow the book before, borrow failed" << endl;
+    //to-do, check the bookDeatial to sorting criteria only
+    if(returnCustomer->containsHistory(bookDetail) == false){ // don't think bookdeatil is the right input here
+        cout << "Customer never borrow the book before, return failed" << endl;
+        return;
     }
 
-    string movieType;
+    string movieType = " ";
     stringstream ss(bookDetail);
     ss >> movieType;
     char sortingCriteria[100];
@@ -225,9 +279,9 @@ void Store::returnMovie(ifstream & in_file)
         cout << "Invaild movie, return failed" << endl;
     }
 
-    string returnMoiveInfo;
-    bool returnBool;
-    char returnChar;
+    string returnMoiveInfo = " ";
+    bool returnBool = false;
+    char returnChar = ' ';
     if(movieType == "D"){
         returnMoiveInfo = "D, 1,";
         returnMoiveInfo = returnMoiveInfo + sortingCriteria;
@@ -235,13 +289,14 @@ void Store::returnMovie(ifstream & in_file)
     }
 
     if(movieType == "C"){
-        returnMoiveInfo = "C, 1, temp, temp,";
-        stringstream ss(sortingCriteria);
-        int month, year;
-        ss >> month >> year;
-        char majorActor[100];
-        ss.getline(majorActor, sizeof(majorActor));
-        returnMoiveInfo += majorActor; // need to swap the order(date first then name)
+        returnMoiveInfo = "C, 1, temp, temp, ";
+        stringstream ss2(sortingCriteria);
+        string firstname, lastname, month, year;
+        ss2 >> month >> year;
+        ss2 >> firstname >> lastname;
+        returnMoiveInfo += firstname;
+        returnMoiveInfo += " ";
+        returnMoiveInfo += lastname;
         returnMoiveInfo += " ";
         returnMoiveInfo += month;
         returnMoiveInfo += " ";
@@ -249,11 +304,14 @@ void Store::returnMovie(ifstream & in_file)
     }
 
     if(movieType == "F"){
-        returnMoiveInfo = "D, 1,";
+        returnMoiveInfo = "F, 1, temp,";
         returnMoiveInfo = returnMoiveInfo + sortingCriteria;
-        returnMoiveInfo = returnMoiveInfo + " 1234";
     }
-    Movie tempMoive = MovieFactory::createMovie(returnMoiveInfo, returnBool, returnChar);
+
+    Movie *tempMoive = MovieFactory::createMovie(returnMoiveInfo, returnBool, returnChar);
+    if(returnBool == false){
+        cout << "couldn't borrow movie, movie info not vaild" << endl;
+    }
     returnBool = false;
     char movieChar = movieType[0];
     returnBool = inventory_.setReturn(tempMoive, movieChar);
@@ -262,7 +320,23 @@ void Store::returnMovie(ifstream & in_file)
         cout << "couldn't return movie, movie may no exist or out of stock" << endl;
 
     }else{
-        string bookDeatils = movieType += rest;
-        returnCustomer->addHistory(bookDeatils, false);
+        returnCustomer->addHistory(bookDetail, true, "D");
+        /*
+        if(movieType == "F"){
+            if (Comedy* derivedMovie = dynamic_cast<Comedy*>(tempMoive)){
+                returnCustomer->addHistory(derivedMovie->sortingCriteria(), true, "F");
+            }
+        }
+        if(movieType == "C"){
+            if (Classic* derivedMovie = dynamic_cast<Classic*>(tempMoive)){
+                returnCustomer->addHistory(derivedMovie->sortingCriteria(), true, "C");
+            }
+        }else{
+            if( Drama* derivedMovie = dynamic_cast<Drama*>(tempMoive)){
+                returnCustomer->addHistory(derivedMovie->sortingCriteria(), true, "D");
+            }
+
+        }
+        */
     }
 }

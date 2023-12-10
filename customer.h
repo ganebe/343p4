@@ -21,12 +21,12 @@ public:
     string getFirstName() const;
 
     // Adds a transaction to the customer's history.
-    void addHistory(string data, bool is_return);
+    void addHistory(string data, bool is_return, string movieType);
 
     // Displays the customer's transaction history.
     void displayHistory() const;
     bool containsHistory(string history) const;
-
+    Customer& operator =(const Customer& rhs);
 private:
     int customerId_; // Unique identifier for the customer.
     string lastName_; // Last name of the customer.

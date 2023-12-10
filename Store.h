@@ -35,7 +35,7 @@ private:
     Hash<int, Customer*> customers_;  // instance variable for Customer class
     Inventory inventory_; // instance variable for Inventory class
 
-    void borrow(ifstream&);
-    void returnMovie(ifstream&);
+    void borrow(stringstream&);
+    void returnMovie(stringstream&);
 };
 #endif

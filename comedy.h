@@ -35,6 +35,7 @@ public:
 	bool operator==(const Comedy& other) const;
 	bool operator!=(const Comedy& other) const;
 	virtual void print() const;
+	virtual string  sortingCriteria();
 
 private:
 	int releaseYear_;

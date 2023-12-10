@@ -74,5 +74,11 @@ bool Classic::operator!=(const Classic &other) const
 
 void Classic::print() const
 {
-    cout << "C, " << getStock() << ", " << getDirector() << ", " << getTitle() << ", " << majorActorFirstName_ << majorActorLastName_ << releaseDate_ << endl;
+    cout << "C, " << getCurrentStock() << ", " << getDirector() << ", " << getTitle() << ", " << majorActorFirstName_ << " " <<  majorActorLastName_ << " " << releaseDate_ << endl;
+}
+
+string Classic::sortingCriteria()
+{
+    string returnString = releaseDate_ + " " + majorActorFirstName_ + " " + majorActorLastName_ ;
+    return returnString; 
 }

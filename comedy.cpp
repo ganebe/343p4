@@ -53,5 +53,11 @@ bool Comedy::operator!=(const Comedy &other) const
 
 void Comedy::print() const
 {
-    cout << "F, " << getStock() << ", " << getDirector() << ", " << getTitle() << ", " << releaseYear_ << endl;
+    cout << "F, " << getCurrentStock() << ", " << getDirector() << ", " << getTitle() << ", " << releaseYear_ << endl;
+}
+
+string Comedy::sortingCriteria()
+{
+    string returnString = getTitle() + ", " + to_string(releaseYear_);
+    return returnString;
 }

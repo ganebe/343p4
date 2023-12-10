@@ -33,7 +33,7 @@ public:
     // borrowing and returning functions
     bool borrowMovie();
     bool returnMovie();
-
+    virtual string  sortingCriteria();
     virtual void print() const;
     virtual string getReleaseDate() const;
     // Comparison operators

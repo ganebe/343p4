@@ -57,8 +57,14 @@ bool Movie::returnMovie()
     
 }
 
+string Movie::sortingCriteria()
+{
+    return string();
+}
+
 void Movie::print() const
 {
+    cout << "deafault movie print" << endl;
 }
 
 string Movie::getReleaseDate() const
