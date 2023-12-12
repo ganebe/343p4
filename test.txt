@@ -1,2 +1,3 @@
-B D Good to Know 1927 12    
-B D Good to Know 1927 12    
+B 8888 D C 3 1971 Ruth Gordon
+R 8888 D C 3 1971 Ruth Gordon
+H 8888

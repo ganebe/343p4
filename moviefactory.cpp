@@ -56,7 +56,8 @@ Movie* MovieFactory::createMovie(string input, bool &sucess, char& movieType)
     }else{
         vector<string> rleaseDateAndActor;
         stringstream lastToken(tokens[4]);
-        string temp;
+        stringstream lastToken2(tokens[4]);
+        string temp, fristName, lastName, month, year;
         while(getline(lastToken,temp, ' ' )){
             rleaseDateAndActor.push_back(temp);
         }
@@ -64,8 +65,10 @@ Movie* MovieFactory::createMovie(string input, bool &sucess, char& movieType)
             sucess = false;
             return new  Movie(12, " ", " ");
         }
-        string relaseDate = ( (rleaseDateAndActor[2].append(" ")).append(rleaseDateAndActor[3]) );
-        Classic *  returnMovie = new Classic(stoi(tokens[1]), tokens[2], tokens[3], rleaseDateAndActor[0], rleaseDateAndActor[1], relaseDate);
+        lastToken2 >> fristName >> lastName >> month >> year;
+        string relaseDate = month + " " + year;
+        string actorName = fristName + " " + lastName;
+        Classic *  returnMovie = new Classic(stoi(tokens[1]), tokens[2], tokens[3], actorName, relaseDate);
         movieType = 'C';
         sucess = true;
         

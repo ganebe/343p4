@@ -21,12 +21,11 @@ class Classic:public Movie
 {
 
 public:
-	Classic(int stock, string director, string title, string majorActorFirstName, string MajorActorLastName, string releaseDate);
+	Classic(int stock, string director, string title, string majorActorName, string releaseDate);
 
 
 	//getters
-	string getFirstName() const;
-	string getLastName() const;
+	string getMajorActorName() const;
 	virtual string getReleaseDate() const;
 
 	//Overloads
@@ -36,10 +35,11 @@ public:
 	bool operator!=(const Classic& other) const;
 	virtual void print() const;
 	virtual string  sortingCriteria();
+
 private:
-	string majorActorFirstName_;
-	string majorActorLastName_;
-	string releaseDate_;
+	string * majorActorName_;
+	string * releaseDate_;
+	string * sortingCriteria_;
 
 };
 #endif

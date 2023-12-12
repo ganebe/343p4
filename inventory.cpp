@@ -64,7 +64,7 @@ bool Inventory::setBorrow(Movie* &newMovie, char movieType, Movie* & rentedMovie
         }
     }
 
-    else if(movieType == 'D')
+    if(movieType == 'D')
     {
         for (Movie* movie : drama_movies_) {
             if (Drama* derivedMovie = dynamic_cast<Drama*>(movie)) {
@@ -79,7 +79,8 @@ bool Inventory::setBorrow(Movie* &newMovie, char movieType, Movie* & rentedMovie
             }
         }
     }
-    else if (movieType == 'C')
+
+    if (movieType == 'C')
     {
         int index = -1;
         Classic* derivedNewMovie = dynamic_cast<Classic*>(newMovie);
@@ -91,13 +92,14 @@ bool Inventory::setBorrow(Movie* &newMovie, char movieType, Movie* & rentedMovie
             Classic* derivedClassicMovie = dynamic_cast<Classic*>(classics_movies_[i]);
             if(!derivedClassicMovie){
 
-            }
-            if(*derivedClassicMovie == * derivedNewMovie){
-                if(derivedClassicMovie->borrowMovie()){
-                    rentedMovied = derivedClassicMovie;
-                    return true;
-                }
+            }else{
+                if(*derivedClassicMovie == *derivedNewMovie){
+                    if(derivedClassicMovie->borrowMovie()){
+                        rentedMovied = derivedClassicMovie;
+                        return true;
+                    }
                 index = i;
+                }
             }
         }
 
@@ -112,11 +114,12 @@ bool Inventory::setBorrow(Movie* &newMovie, char movieType, Movie* & rentedMovie
             Classic* searchMovie = dynamic_cast<Classic*>(classics_movies_[index]);
             if (!derivedClassicMovie) {
                 continue; // Skip if cast fails
-            }
-            if(derivedClassicMovie->getDirector() == searchMovie->getDirector()){
-                if(derivedClassicMovie->getTitle() == searchMovie->getTitle()){
-                    if(derivedClassicMovie->getReleaseDate() == searchMovie->getReleaseDate()){
-                        sameMovies.push_back(i);
+            }else{
+                if(derivedClassicMovie->getDirector() == searchMovie->getDirector()){
+                    if(derivedClassicMovie->getTitle() == searchMovie->getTitle()){
+                        if(derivedClassicMovie->getReleaseDate() == searchMovie->getReleaseDate()){
+                            sameMovies.push_back(i);
+                        }
                     }
                 }
             }
@@ -139,39 +142,6 @@ bool Inventory::setBorrow(Movie* &newMovie, char movieType, Movie* & rentedMovie
 }
 
 
-/*
-bool Inventory::setReturn(Movie* &newMovie, char movieType)
-{
-   vector<Movie*>* movies = nullptr;
-    if (movieType == 'F')
-    {
-        movies = &comedy_movies_;
-    }
-    else if(movieType == 'D')
-    {
-        movies = &drama_movies_;
-    }
-    else if (movieType == 'C')
-    {
-        movies = &classics_movies_;
-    }
-    else
-    {
-        return false;
-    }
-
-    for (Movie*& other : *movies) 
-    {
-        if(*other == *newMovie)
-        {
-            return other->returnMovie();
-        }
-    }
-
-    
-    return false;
-}
-*/
 
 bool Inventory::setReturn(Movie* &newMovie, char movieType) {
     if (movieType == 'F') {
@@ -197,7 +167,7 @@ bool Inventory::setReturn(Movie* &newMovie, char movieType) {
 
           for (Movie* movie : classics_movies_) {
             if (Classic* derivedMovie = dynamic_cast<Classic*>(movie)) {
-                if (*derivedMovie == dynamic_cast<Classic&>(*newMovie)) {
+                if (derivedMovie->sortingCriteria() == dynamic_cast<Classic&>(*newMovie).sortingCriteria()) {
                     return derivedMovie->returnMovie();
                 }
             }
@@ -215,7 +185,7 @@ bool Inventory::addMovie(Movie* &newMovie, char movieType) {
         case 'C': {
             for (Movie* movie : classics_movies_) {
                 if (Classic* derivedMovie = dynamic_cast<Classic*>(movie)) {
-                    if (*derivedMovie == dynamic_cast<Classic&>(*newMovie)) {
+                    if (derivedMovie->sortingCriteria() == dynamic_cast<Classic&>(*newMovie).sortingCriteria()) {
                         return false;
                     }
                 }
@@ -238,8 +208,8 @@ bool Inventory::addMovie(Movie* &newMovie, char movieType) {
         }
         case 'D': {
             for (Movie* movie : drama_movies_) {
-                if (Classic* derivedMovie = dynamic_cast<Classic*>(movie)) {
-                    if (*derivedMovie == dynamic_cast<Classic&>(*newMovie)) {
+                if (Drama* derivedMovie = dynamic_cast<Drama*>(movie)) {
+                    if (*derivedMovie == dynamic_cast<Drama&>(*newMovie)) {
                         return false;
                     }
                 }
@@ -250,6 +220,7 @@ bool Inventory::addMovie(Movie* &newMovie, char movieType) {
         }
             return false;
     }
+    return false;
 }
 
 void Inventory::comedySort() {

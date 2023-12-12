@@ -14,27 +14,16 @@
 //----------------------------Classic constructor-----------------------
 // Constructor for Classic movies 
 //---------------------------------------------------------------
-Classic::Classic(int stock, string director, string title, string majorActorFirstName, string MajorActorLastName, string releaseDate):Movie(stock, director, title)
+Classic::Classic(int stock, string director, string title, string majorActorName, string releaseDate):Movie(stock, director, title)
 {
-    majorActorFirstName_ = majorActorFirstName; //Initializing major first name
-    majorActorLastName_ = MajorActorLastName; //Initializing major last name
-    releaseDate_ = releaseDate;                //Initializing release date
+    majorActorName_ = new string(majorActorName);
+    releaseDate_ = new string(releaseDate);
+    sortingCriteria_ = new string(releaseDate + " " +majorActorName);
 }
 
-//----------------------getFirstName------------------------
-//Returns the first name of the actor
-//---------------------------------------------------------------
-string Classic::getFirstName() const
+string Classic::getMajorActorName() const
 {
-    return majorActorFirstName_; //return first name
-}
-
-//----------------------getLastName------------------------
-//Returns the last name of the actor
-//---------------------------------------------------------------
-string Classic::getLastName() const
-{
-    return majorActorLastName_; //return last name
+    return *majorActorName_;
 }
 
 //----------------------getReleaseDate------------------------
@@ -42,7 +31,7 @@ string Classic::getLastName() const
 //---------------------------------------------------------------
 string Classic::getReleaseDate() const
 {
-    return releaseDate_; //return release date
+    return *releaseDate_;
 }
 
 //---------------------------operator overload <---------------------------
@@ -56,18 +45,11 @@ bool Classic::operator<(const Classic &other) const
         return false;
     }
 
-    if(releaseDate_ < other.releaseDate_) //Comparing release dates
-    {
+    if(*releaseDate_ < *other.releaseDate_){
         return true;
     }
 
-    if(majorActorFirstName_ < other.majorActorFirstName_) //Comparing first names 
-    {
-        return true;
-    }
-
-    if(majorActorLastName_ < other.majorActorLastName_) //Comparing last names
-    {
+    if(*majorActorName_ < *other.majorActorName_){
         return true;
     }
 
@@ -91,22 +73,10 @@ bool Classic::operator>(const Classic &other) const
 bool Classic::operator==(const Classic &other) const
 {
 
-    if(releaseDate_ != other.releaseDate_) // If release dates are not equal
-    {
+    if(*sortingCriteria_ != *other.sortingCriteria_){
         return false;
     }
-
-    if(majorActorFirstName_ != other.majorActorFirstName_) //If first names are not equal
-    {
-        return false;
-    }
-
-    if(majorActorLastName_ != other.majorActorLastName_) //If last names are not equal
-    {
-        return false;
-    }
-    
-    return true;
+     return true;
 }
 
 //---------------------------operator overload !=---------------------------
@@ -124,7 +94,7 @@ bool Classic::operator!=(const Classic &other) const
 
 void Classic::print() const
 {
-    cout << "C, " << getCurrentStock() << ", " << getDirector() << ", " << getTitle() << ", " << majorActorFirstName_ << " " <<  majorActorLastName_ << " " << releaseDate_ << endl;
+    cout << "C, " << getCurrentStock() << ", " << getDirector() << ", " << getTitle() << ", " << *majorActorName_ << " " <<  *releaseDate_ << endl;
 }
 
 //---------------------------sortingCriteria---------------------------
@@ -133,6 +103,5 @@ void Classic::print() const
 
 string Classic::sortingCriteria()
 {
-    string returnString = releaseDate_ + " " + majorActorFirstName_ + " " + majorActorLastName_ ; //Storing release date, first and last name of classic movie
-    return returnString; 
+    return *sortingCriteria_;
 }
