@@ -7,13 +7,13 @@ Inventory::Inventory()
 void Inventory::printItmes()
 {
     cout << "Inventory items:" << endl;
-    for(int i = 0 ; i < comedy_movies_.size(); i++){
+    for(int i = comedy_movies_.size() - 1 ; i >= 0; i--){
         comedy_movies_[i]->print();
     }
-    for(int i = 0 ; i < drama_movies_.size(); i++){
+    for(int i = drama_movies_.size() - 1 ; i >= 0; i--){
         drama_movies_[i]->print();
     }
-    for(int i = 0 ; i < classics_movies_.size(); i++){
+    for(int i = classics_movies_.size() - 1 ; i >= 0; i--){
         classics_movies_[i]->print();
     }
 

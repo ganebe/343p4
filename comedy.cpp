@@ -12,9 +12,6 @@ int Comedy::getReleaseYear() const
 
 bool Comedy::operator<(const Comedy &other) const
 {
-    if(*this == other){
-        return false;
-    }
 
     if(getTitle() < other.getTitle()){
         return true;

@@ -20,11 +20,17 @@ string Classic::getReleaseDate() const
 bool Classic::operator<(const Classic &other) const
 {
 
-    if(*this == other){
-        return false;
+    int month, year, otherMonth, otherYear;
+    stringstream ss(*releaseDate_);
+    stringstream ss2(*other.releaseDate_);
+    ss >> month >> year;
+    ss2 >> otherMonth >> otherYear;
+    if(year < otherYear){
+        
+        return true;
     }
 
-    if(*releaseDate_ < *other.releaseDate_){
+    if(year == otherYear && month < otherMonth){
         return true;
     }
 

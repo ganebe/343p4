@@ -86,7 +86,10 @@ void Customer::displayHistory() const
 bool Customer::containsHistory(string history) const
 {
     for(int i = 0; i < history_.size(); i++){
+        cout << history << endl;
+        cout << history_[i] << endl;
         if(history_[i].compare(history)){
+            cout << status_[i] << endl;   
             if(status_[i] == "borrowed"){
                 return true;
             }
