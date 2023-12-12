@@ -13,7 +13,7 @@ using namespace std;
 // CSS 343 B Au 23
 // Created on 11/17/2023
 // Last Modified on 11/17/2023
-// Created by Vince Nguyen, Lok Yin Wong, Chin Cheung Lam, Thomas Nguyen
+// Created by Vince Nguyen, Lok Yin Wong
 // --------------------------------------------------------------------------------------------------------------------
 // This file contains the headers for the Inventory class which contain functionalities such as borrowing a movie, returning a movie
 // and adding a movie to the inventory
@@ -27,26 +27,18 @@ public:
 
 Inventory(); // deafault constructor
 
-//------------------------- setReturn ---------------------------------
-// borrow a movie from the inventory
-//-------------------------------------------------------------------------
+
 bool setBorrow(Movie* &, char movieType, Movie*&);
 
-//------------------------- setReturn ---------------------------------
-// return a movie to the inventory
-//-------------------------------------------------------------------------
+
 bool setReturn(Movie* &, char movieType);
 
 
-//------------------------- addMovie ---------------------------------
-//  outputs the inventory of all the items in the store 
-//-------------------------------------------------------------------------
+
 void printItmes();
 
 
-//------------------------- addMovie ---------------------------------
-// Adds a movie to the inventory
-//-------------------------------------------------------------------------
+
 bool addMovie(Movie*&, char movieType); 
 
 private:

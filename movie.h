@@ -1,3 +1,14 @@
+// ------------------------------------------------movie.h -------------------------------------------------------
+// CSS 343 B Au 23
+// Created on 11/17/2023
+// Last Modified on 11/17/2023
+// Created by Vince Nguyen, Lok Yin Wong
+// --------------------------------------------------------------------------------------------------------------------
+// This file contains the headers for the movie class which has functionalities that grab a movies stock, the director,
+// the title, allowing to borrow and return a movie, and the release date.
+// --------------------------------------------------------------------------------------------------------------------
+// Functionalities are common across all movie objects
+// --------------------------------------------------------------------------------------------------------------------
 #ifndef MOVIE_H_
 #define MOVIE_H_
 #include <string>
@@ -6,7 +17,8 @@
 
 using namespace std;
 
-class Movie {
+class Movie 
+{
 public:
 
     // Constructor	

@@ -1,3 +1,14 @@
+// ------------------------------------------------store.h -------------------------------------------------------
+// CSS 343 B Au 23
+// Created on 11/17/2023
+// Last Modified on 11/17/2023
+// Created by Vince Nguyen, Lok Yin Wong
+// --------------------------------------------------------------------------------------------------------------------
+// This file contains the headers for the store class which has functionalities that reads the customer's information
+// and all the movie information that is stored from the movie class.
+// --------------------------------------------------------------------------------------------------------------------
+// All movies should be read correctly
+// --------------------------------------------------------------------------------------------------------------------
 
 #ifndef STORE_H
 #define STORE_H
@@ -17,19 +28,13 @@ class Store
 public:
     Store(); // constructor
 
-    //------------------------- loadMovies ---------------------------------
-    // Reads DVD movie information from the specified file.
-    //-------------------------------------------------------------------------
+    
     void loadMovies(string);
 
-    //------------------------- loadCustomers ---------------------------------
-    // Reads customer information from the specified file.
-    //-------------------------------------------------------------------------
+  
     void loadCustomers(string);
 
-    //------------------------- runCommands ---------------------------------
-    // Reads and runs command information from the specified file.  
-    //-------------------------------------------------------------------------
+    
     void runCommands(string); // reads and runs commands file
 
 private:
