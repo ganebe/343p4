@@ -1,3 +1,14 @@
+// ----------------------------------------------------customer.h-------------------------------------------------------
+// Vincent Nguyen CSS 343 B
+// 11/17/2023
+// --------------------------------------------------------------------------------------------------------------------
+// Purpose - This header file has various functions to keep track of a customer's first name, last name, their id, a way to 
+// add to their transaction history and to display their transaction history. 
+// 
+// --------------------------------------------------------------------------------------------------------------------
+// The the unique customer ID can only be an integer
+// -------------------------------------------------------------------------------------------------------------------- 
+
 #ifndef CUSTOMER_H_
 #define CUSTOMER_H_
 #include <string>
@@ -5,7 +16,8 @@
 #include<iostream>
 using namespace std;
 
-class Customer {
+class Customer 
+{
 public:
     // Constructor
     Customer(int customerId, const string& lastName, const string& firstName);

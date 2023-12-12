@@ -15,8 +15,8 @@ using namespace std;
 // Last Modified on 11/17/2023
 // Created by Vince Nguyen, Lok Yin Wong, Chin Cheung Lam, Thomas Nguyen
 // --------------------------------------------------------------------------------------------------------------------
-// This file contains the headers for the Inventory class, parameters are not fully filled and may be changed later.
- // However, it contains the core functions that the Inventory has.
+// This file contains the headers for the Inventory class which contain functionalities such as borrowing a movie, returning a movie
+// and adding a movie to the inventory
 // --------------------------------------------------------------------------------------------------------------------
 // The Invetory class is using the three vectors as the storage for different kinds of movies.
 // --------------------------------------------------------------------------------------------------------------------

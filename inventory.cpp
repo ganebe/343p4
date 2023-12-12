@@ -1,19 +1,39 @@
+// ------------------------------------------------Inventory.cpp -------------------------------------------------------
+// CSS 343 B Au 23
+// Created on 11/17/2023
+// Last Modified on 11/17/2023
+// Created by Vince Nguyen, Lok Yin Wong, Chin Cheung Lam, Thomas Nguyen
+// --------------------------------------------------------------------------------------------------------------------
+// This file contains the implementation for the Inventory class which contain functionalities such as borrowing a movie, returning a movie
+// and adding a movie to the inventory
+// --------------------------------------------------------------------------------------------------------------------
+// The Invetory class is using the three vectors as the storage for different kinds of movies.
+// --------------------------------------------------------------------------------------------------------------------
 #include "inventory.h"
 
+//------------------------- Default constructor ---------------------------------
+// 
+//-------------------------------------------------------------------------
 Inventory::Inventory()
 {
 }
 
+//------------------------- printItems ---------------------------------
+// Printing the items that is stored in the Inventory
+//-------------------------------------------------------------------------
 void Inventory::printItmes()
 {
     cout << "Inventory items:" << endl;
-    for(int i = 0 ; i < comedy_movies_.size(); i++){
+    for(int i = 0 ; i < comedy_movies_.size(); i++) //Looping through comedy array
+    {
         comedy_movies_[i]->print();
     }
-    for(int i = 0 ; i < drama_movies_.size(); i++){
+    for(int i = 0 ; i < drama_movies_.size(); i++) //Looping through drama array
+    {
         drama_movies_[i]->print();
     }
-    for(int i = 0 ; i < classics_movies_.size(); i++){
+    for(int i = 0 ; i < classics_movies_.size(); i++) //Looping through classics array
+    {
         classics_movies_[i]->print();
     }
 
@@ -22,15 +42,21 @@ void Inventory::printItmes()
 bool Inventory::setBorrow(Movie* &newMovie, char movieType, Movie* & rentedMovied )
 {
 
-    if (movieType == 'F')
+    if (movieType == 'F') //If the movie type is the character 'F'
     {
-        for (Movie* movie : comedy_movies_) {
-            if (Comedy* derivedMovie = dynamic_cast<Comedy*>(movie)) {
-                if (*derivedMovie == dynamic_cast<Comedy&>(*newMovie)) {
-                    if(derivedMovie->borrowMovie()){
-                        rentedMovied = derivedMovie;
+        for (Movie* movie : comedy_movies_) 
+        {
+            if (Comedy* derivedMovie = dynamic_cast<Comedy*>(movie)) 
+            {
+                if (*derivedMovie == dynamic_cast<Comedy&>(*newMovie))//If the movies are the same
+                {
+                    if(derivedMovie->borrowMovie())
+                    {
+                        rentedMovied = derivedMovie; //Update movie and borrow is good
                         return true;
-                    }else{
+                    }
+                    else
+                    {
                         return false;
                     }
                 }
