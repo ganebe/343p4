@@ -1,6 +1,7 @@
 // ----------------------------------------------------classic.cpp-------------------------------------------------------
-// Vincent Nguyen CSS 343 B
-// 11/17/2023
+// Vincent Nguyen and Lok Yin Wong CSS 343 B
+// 12/8/2023
+// 12/12/2023
 // --------------------------------------------------------------------------------------------------------------------
 // Purpose - This implementation file has various functions to handle and process 
 // the genre, stock, director, title, major name, release year, and release month

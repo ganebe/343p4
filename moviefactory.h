@@ -13,12 +13,11 @@ class MovieFactory{
 
 // ------------------------------------------------MovieFactory.h -------------------------------------------------------
 // CSS 343 B Au 23
-// Created on 11/17/2023
-// Last Modified on 11/17/2023
+// 12/8/2023
+// 12/12/2023
 // Created by Vince Nguyen, Lok Yin Wong
 // --------------------------------------------------------------------------------------------------------------------
-// This file contains the headers for the MovieFactory class, parameters are not fully filled and may be changed later.
- // However, it contains the core functions that the MovieFactory has.
+// This file contains the implementations for the MovieFactory class, which checks to see if the string provided is a valid movie string
 // --------------------------------------------------------------------------------------------------------------------
 // The MovieFactory class is use to constructor a movie object
 // --------------------------------------------------------------------------------------------------------------------
