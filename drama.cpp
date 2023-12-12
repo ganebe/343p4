@@ -34,12 +34,18 @@ int Drama::getReleaseYear() const
 //---------------------------------------------------------------
 
 bool Drama::operator <(const Drama &other) const
-{    
-    if(getDirector().compare( other.getDirector())  < 0) {
+{
+
+    if(*this == other){
+        return false;
+    }
+
+    
+    if(getDirector() < other.getDirector()){
         return true;
     }
 
-    if(getTitle().compare(  other.getTitle())  < 0 ){
+    if(getDirector() == other.getDirector() && getTitle() < other.getTitle()){
         return true;
     }
 

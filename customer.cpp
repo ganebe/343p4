@@ -78,7 +78,7 @@ void Customer::addHistory(string data, bool is_return, string movieType)
         int index = -1;
         for(int i = 0; i < history_.size(); i++) //Finding borrowed transaction in history
         {
-            if(history_[i].compare(data) && index == -1 && status_[i] == "borrowed")
+            if(history_[i].compare(data) && index == -1 && status_[i] ==  "borrowed" )
             {
                 index = i;
                 temp = history_[i];
@@ -139,7 +139,7 @@ bool Customer::containsHistory(string history) const
     {
         if(history_[i].compare(history)) 
         {
-            if(status_[i] == "borrowed")
+            if(status_[i] ==  "borrowed")
             {
                 return true;
             }

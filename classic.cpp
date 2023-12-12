@@ -54,8 +54,10 @@ bool Classic::operator<(const Classic &other) const
         return true;
     }
 
-    if(*majorActorName_ < *other.majorActorName_){
-        return true;
+    if(year == otherYear && month == otherMonth){
+        if(*majorActorName_ < *other.majorActorName_){
+            return true;
+        }
     }
 
     return false;

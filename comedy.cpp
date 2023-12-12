@@ -40,7 +40,7 @@ bool Comedy::operator<(const Comedy &other) const
         return true;
     }
     
-    if(releaseYear_ < other.releaseYear_) //when title are the same or weight the same(char)
+    if( getTitle() == other.getTitle() && releaseYear_ < other.releaseYear_) //when title are the same or weight the same(char)
     {
         return true;
     }

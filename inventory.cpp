@@ -133,11 +133,11 @@ bool Inventory::setBorrow(Movie* &newMovie, char movieType, Movie* & rentedMovie
             }
             else
             {
-                if(derivedClassicMovie->getDirector() == searchMovie->getDirector()) // If directors match
+                if(derivedClassicMovie->getDirector().compare( searchMovie->getDirector()) == 0) // If directors match
                 {
-                    if(derivedClassicMovie->getTitle() == searchMovie->getTitle()) // If titles match
+                    if(derivedClassicMovie->getTitle().compare( searchMovie->getTitle()) == 0) // If titles match
                     {
-                        if(derivedClassicMovie->getReleaseDate() == searchMovie->getReleaseDate()) // If release dates match
+                        if(derivedClassicMovie->getReleaseDate().compare( searchMovie->getReleaseDate()) == 0) // If release dates match
                         {
                             sameMovies.push_back(i);
                         }
