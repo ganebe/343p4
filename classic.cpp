@@ -1,25 +1,20 @@
 #include "classic.h"
 
-Classic::Classic(int stock, string director, string title, string majorActorFirstName, string MajorActorLastName, string releaseDate):Movie(stock, director, title)
+Classic::Classic(int stock, string director, string title, string majorActorName, string releaseDate):Movie(stock, director, title)
 {
-    majorActorFirstName_ = majorActorFirstName;
-    majorActorLastName_ = MajorActorLastName;
-    releaseDate_ = releaseDate;
+    majorActorName_ = new string(majorActorName);
+    releaseDate_ = new string(releaseDate);
+    sortingCriteria_ = new string(releaseDate + " " +majorActorName);
 }
 
-string Classic::getFirstName() const
+string Classic::getMajorActorName() const
 {
-    return majorActorFirstName_;
-}
-
-string Classic::getLastName() const
-{
-    return majorActorLastName_;
+    return *majorActorName_;
 }
 
 string Classic::getReleaseDate() const
 {
-    return releaseDate_;
+    return *releaseDate_;
 }
 
 bool Classic::operator<(const Classic &other) const
@@ -29,15 +24,11 @@ bool Classic::operator<(const Classic &other) const
         return false;
     }
 
-    if(releaseDate_ < other.releaseDate_){
+    if(*releaseDate_ < *other.releaseDate_){
         return true;
     }
 
-    if(majorActorFirstName_ < other.majorActorFirstName_){
-        return true;
-    }
-
-    if(majorActorLastName_ < other.majorActorLastName_){
+    if(*majorActorName_ < *other.majorActorName_){
         return true;
     }
 
@@ -52,19 +43,10 @@ bool Classic::operator>(const Classic &other) const
 bool Classic::operator==(const Classic &other) const
 {
 
-    if(releaseDate_ != other.releaseDate_){
+    if(*sortingCriteria_ != *other.sortingCriteria_){
         return false;
     }
-
-    if(majorActorFirstName_ != other.majorActorFirstName_){
-        return false;
-    }
-
-    if(majorActorLastName_ != other.majorActorLastName_){
-        return false;
-    }
-    
-    return true;
+     return true;
 }
 
 bool Classic::operator!=(const Classic &other) const
@@ -74,11 +56,10 @@ bool Classic::operator!=(const Classic &other) const
 
 void Classic::print() const
 {
-    cout << "C, " << getCurrentStock() << ", " << getDirector() << ", " << getTitle() << ", " << majorActorFirstName_ << " " <<  majorActorLastName_ << " " << releaseDate_ << endl;
+    cout << "C, " << getCurrentStock() << ", " << getDirector() << ", " << getTitle() << ", " << *majorActorName_ << " " <<  *releaseDate_ << endl;
 }
 
 string Classic::sortingCriteria()
 {
-    string returnString = releaseDate_ + " " + majorActorFirstName_ + " " + majorActorLastName_ ;
-    return returnString; 
+    return *sortingCriteria_;
 }

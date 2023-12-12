@@ -259,13 +259,14 @@ void Store::returnMovie(stringstream & in_file)
     }
     char rest[100];
     in_file.getline(rest, sizeof(rest));
-    string bookDetail = rest; // start with movie type w/o space infront
-    bookDetail = bookDetail.substr(1,99);
-    //to-do, check the bookDeatial to sorting criteria only
+    string temp = rest;
+    string bookDetail = temp.substr(1, temp.size() - 1);
+    
     if(returnCustomer->containsHistory(bookDetail) == false){ // don't think bookdeatil is the right input here
         cout << "Customer never borrow the book before, return failed" << endl;
         return;
     }
+    
 
     string movieType = " ";
     stringstream ss(bookDetail);
@@ -308,9 +309,16 @@ void Store::returnMovie(stringstream & in_file)
         returnMoiveInfo = returnMoiveInfo + sortingCriteria;
     }
 
+
+
+    
     Movie *tempMoive = MovieFactory::createMovie(returnMoiveInfo, returnBool, returnChar);
+
+
+
     if(returnBool == false){
         cout << "couldn't borrow movie, movie info not vaild" << endl;
+        return;
     }
     returnBool = false;
     char movieChar = movieType[0];
@@ -318,25 +326,8 @@ void Store::returnMovie(stringstream & in_file)
 
     if(returnBool == false){
         cout << "couldn't return movie, movie may no exist or out of stock" << endl;
-
+        return;
     }else{
         returnCustomer->addHistory(bookDetail, true, "D");
-        /*
-        if(movieType == "F"){
-            if (Comedy* derivedMovie = dynamic_cast<Comedy*>(tempMoive)){
-                returnCustomer->addHistory(derivedMovie->sortingCriteria(), true, "F");
-            }
-        }
-        if(movieType == "C"){
-            if (Classic* derivedMovie = dynamic_cast<Classic*>(tempMoive)){
-                returnCustomer->addHistory(derivedMovie->sortingCriteria(), true, "C");
-            }
-        }else{
-            if( Drama* derivedMovie = dynamic_cast<Drama*>(tempMoive)){
-                returnCustomer->addHistory(derivedMovie->sortingCriteria(), true, "D");
-            }
-
-        }
-        */
     }
 }

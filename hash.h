@@ -51,6 +51,7 @@ public:
 
     // Removes the item with the specified key from the hash table.
     bool removeItem(const KeyType& key) {
+        return false;
     }
 
     void clear(){

@@ -42,7 +42,7 @@ void Customer::addHistory(string data, bool is_return, string movieType)
     if(is_return == true){
         int index = -1;
         for(int i = 0; i < history_.size(); i++){
-            if(history_[i] == data && index == -1 && status_[i] == "borrowed"){
+            if(history_[i].compare(data) && index == -1 && status_[i] == "borrowed"){
                 index = i;
                 temp = history_[i];
             }
@@ -86,7 +86,7 @@ void Customer::displayHistory() const
 bool Customer::containsHistory(string history) const
 {
     for(int i = 0; i < history_.size(); i++){
-        if(history_[i] == history){
+        if(history_[i].compare(history)){
             if(status_[i] == "borrowed"){
                 return true;
             }
