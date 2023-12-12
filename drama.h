@@ -1,4 +1,4 @@
-// ----------------------------------------------------comedy.h-------------------------------------------------------
+// ----------------------------------------------------drama.h-------------------------------------------------------
 // Vincent Nguyen CSS 343 B
 // 11/17/2023
 // --------------------------------------------------------------------------------------------------------------------
@@ -6,7 +6,7 @@
 // by the charater 'D' which will be used by the parent class "Movie".
 // 
 // --------------------------------------------------------------------------------------------------------------------
-// The only code/genre inputted can only be 'D' for comedy.
+// The only code/genre inputted can only be 'D' for Drama.
 // -------------------------------------------------------------------------------------------------------------------- 
 #pragma once
 #ifndef DRAMA_H
@@ -34,7 +34,8 @@ public:
 	bool operator==(const Drama& other) const;
 	bool operator!=(const Drama& other) const;
 	virtual void print() const;
-	virtual string  sortingCriteria();
+	virtual string sortingCriteria();
+
 private:
 	int releaseYear_;
 };
