@@ -15,7 +15,7 @@ class MovieFactory{
 // CSS 343 B Au 23
 // Created on 11/17/2023
 // Last Modified on 11/17/2023
-// Created by Vince Nguyen, Lok Yin Wong, Chin Cheung Lam, Thomas Nguyen
+// Created by Vince Nguyen, Lok Yin Wong
 // --------------------------------------------------------------------------------------------------------------------
 // This file contains the headers for the MovieFactory class, parameters are not fully filled and may be changed later.
  // However, it contains the core functions that the MovieFactory has.

@@ -1,5 +1,5 @@
 // ----------------------------------------------------customer.h-------------------------------------------------------
-// Vincent Nguyen CSS 343 B
+// Vincent Nguyen and Lok Yin Wong CSS 343 B
 // 11/17/2023
 // --------------------------------------------------------------------------------------------------------------------
 // Purpose - This header file has various functions to keep track of a customer's first name, last name, their id, a way to 
