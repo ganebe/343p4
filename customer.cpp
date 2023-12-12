@@ -68,6 +68,7 @@ void Customer::addHistory(string data, bool is_return, string movieType)
         string his = movieType;
         his += " ";
         his += data;
+        boost::trim(his);
         history_.push_back(his); //Adding the transaction to history
         status_.push_back("borrowed"); //Setting the status as borrowed
     }
@@ -76,9 +77,10 @@ void Customer::addHistory(string data, bool is_return, string movieType)
     if(is_return == true) //If return is true 
     {
         int index = -1;
+        boost::trim(data);
         for(int i = 0; i < history_.size(); i++) //Finding borrowed transaction in history
         {
-            if(history_[i].compare(data) && index == -1 && status_[i] ==  "borrowed" )
+            if(history_[i].compare(data) == 0 && index == -1 && status_[i] ==  "borrowed")
             {
                 index = i;
                 temp = history_[i];
@@ -135,9 +137,10 @@ void Customer::displayHistory() const
 
 bool Customer::containsHistory(string history) const
 {
+    boost::trim(history);
     for(int i = 0; i < history_.size(); i++) //Looping through history
     {
-        if(history_[i].compare(history)) 
+        if(history.compare(history_[i]) == 0) 
         {
             if(status_[i] ==  "borrowed")
             {
@@ -162,3 +165,4 @@ Customer &Customer::operator=(const Customer &rhs)
     history_ = rhs.history_;       //Copy data of history
     return *this;
 }
+

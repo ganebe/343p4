@@ -164,7 +164,7 @@ bool Inventory::setBorrow(Movie* &newMovie, char movieType, Movie* & rentedMovie
 //------------------------- setReturn ---------------------------------
 // Return a movie from the inventory
 //-------------------------------------------------------------------------
-bool Inventory::setReturn(Movie* &newMovie, char movieType) 
+bool Inventory::setReturn(Movie* &newMovie, char movieType, Movie*& rentedMovied) 
 {
      if (movieType == 'F') // If the movie type is 'F'
     {
@@ -198,8 +198,9 @@ bool Inventory::setReturn(Movie* &newMovie, char movieType)
         {
             if (Classic* derivedMovie = dynamic_cast<Classic*>(movie)) // Check if the movie is a Classic
             {
-                if (derivedMovie->sortingCriteria() == dynamic_cast<Classic&>(*newMovie).sortingCriteria()) // If sorting criteria matches
+                if (derivedMovie->sortingCriteria() ==  dynamic_cast<Classic&>(*newMovie).sortingCriteria() ) // If sorting criteria matches
                 {
+                    rentedMovied = derivedMovie;
                     return derivedMovie->returnMovie(); 
                 }
             }

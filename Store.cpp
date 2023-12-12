@@ -44,7 +44,7 @@ void Store::loadMovies(string fileName)
                 sucess = inventory_.addMovie(newMovie, movieType);
                 if(sucess == false)
                 {
-                cout << "Movie already existed, failed to add to the inventory";
+                cout << "Movie already existed, failed to add to the inventory" << endl;
                 }           
             }
 
@@ -258,7 +258,7 @@ if(movieType == "D" || movieType == "C" || movieType == "F") // If the movie typ
         borrowMovieInfo = borrowMovieInfo + rest; // Add the rest of the information
         borrowMovieInfo = borrowMovieInfo + " 1234"; // Add additional information for Drama
     }
-
+    
     char movieChar = movieType[0]; // Get the first character of the movie type
     Movie * tempMovie = MovieFactory::createMovie(borrowMovieInfo, returnBool, returnChar); // Create a temporary Movie object
     if(returnBool == false) // If creating the movie object failed
@@ -389,7 +389,7 @@ if(movieType == "F") // If the movie type is 'F' (Comedy)
     returnMovieInfo = "F, 1, temp,"; // Initialize with common information
     returnMovieInfo = returnMovieInfo + sortingCriteria; // Add sorting criteria
 }
-
+Movie *returnMovie;
 Movie *tempMovie = MovieFactory::createMovie(returnMovieInfo, returnBool, returnChar); // Create a temporary Movie object for returning
 if(returnBool == false) // If creating the movie object failed
 {
@@ -398,7 +398,7 @@ if(returnBool == false) // If creating the movie object failed
 }
 returnBool = false;
 char movieChar = movieType[0];
-returnBool = inventory_.setReturn(tempMovie, movieChar); // Try to return the movie
+returnBool = inventory_.setReturn(tempMovie, movieChar, returnMovie); // Try to return the movie
 if(returnBool == false) // If returning failed
 {
     cout << "Couldn't return movie, movie may not exist or out of stock" << endl; 
@@ -406,6 +406,8 @@ if(returnBool == false) // If returning failed
 }
 else
 {
+
     returnCustomer->addHistory(bookDetail, true, "D"); // Update customer history for the returned movie
+
 }
 }

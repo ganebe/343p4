@@ -31,7 +31,7 @@ Inventory(); // deafault constructor
 bool setBorrow(Movie* &, char movieType, Movie*&);
 
 
-bool setReturn(Movie* &, char movieType);
+bool setReturn(Movie* &, char movieType, Movie*&);
 
 
 

@@ -13,6 +13,7 @@
 #define CUSTOMER_H_
 #include <string>
 #include <vector>
+#include <boost/algorithm/string.hpp> 
 #include<iostream>
 using namespace std;
 
