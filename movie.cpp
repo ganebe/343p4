@@ -1,7 +1,7 @@
 // ------------------------------------------------movie.h -------------------------------------------------------
 // CSS 343 B Au 23
-// Created on 11/17/2023
-// Last Modified on 11/17/2023
+// 12/8/2023
+// 12/12/2023
 // Created by Vince Nguyen, Lok Yin Wong
 // --------------------------------------------------------------------------------------------------------------------
 // This file contains the implementations for the movie class which has functionalities that grab a movies stock, the director,

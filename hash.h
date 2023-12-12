@@ -1,6 +1,7 @@
 // ----------------------------------------------------hash.h-------------------------------------------------------
-// Vincent Nguyen CSS 343 B
-// 11/17/2023
+// Vincent Nguyen and Lok Yin Wong CSS 343 B
+// 12/8/2023
+// 12/12/2023
 // --------------------------------------------------------------------------------------------------------------------
 // Purpose - This header file contains a hash table that is able to store the customers by ID which are all unique
 // It has functions such as adding an item and retrieving an item from the hash table

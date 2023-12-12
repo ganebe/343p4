@@ -1,3 +1,14 @@
+// ------------------------------------------------store.h -------------------------------------------------------
+// CSS 343 B Au 23
+// 12/8/2023
+// 12/12/2023
+// Created by Vince Nguyen, Lok Yin Wong
+// --------------------------------------------------------------------------------------------------------------------
+// This file contains the implementations for the store class which has functionalities that reads the customer's information
+// and all the movie information that is stored from the movie class.
+// --------------------------------------------------------------------------------------------------------------------
+// All movies should be read correctly
+// --------------------------------------------------------------------------------------------------------------------
 #include "store.h"
 
 Store::Store()
